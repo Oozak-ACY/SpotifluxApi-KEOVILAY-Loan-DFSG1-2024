@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Track index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Track index</h1>
+
+            <table class="table table-bordered mt-4 mb-4">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for track in tracks %}
+                    <tr>
+                        <td>{{ track.id }}</td>
+                        <td>{{ track.title }}</td>
+                        <td>{{ track.duration }}</td>
+                        <td>
+                            <a href="{{ path('app_web_track_show', {'id': track.id}) }}" class="btn btn-outline-secondary">show</a>
+                            <a href="{{ path('app_web_track_edit', {'id': track.id}) }}" class="btn btn-warning">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_web_track_new') }}" ><button class="btn btn-primary mb-5 mr-5">Create new Track</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

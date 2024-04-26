@@ -1,0 +1,38 @@
+<nav
+    class="navbar navbar-expand-sm navbar-light bg-light"
+>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/api/doc">Api</a>
+                </li>
+                
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_web_album_index')}}">Albums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_web_track_index') }}">Tracks</a>
+                </li>    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_web_artist_index') }}">Artists</a>
+                </li>           
+                {% endif %}
+
+                {% if not is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
+                </li>
+                {% else %}
+                <li class="nav-item ms-auto">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                </li> 
+                {% endif %}
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>
